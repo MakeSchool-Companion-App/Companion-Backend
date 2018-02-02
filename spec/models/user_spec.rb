@@ -28,6 +28,7 @@ RSpec.describe User, type: :model do
       association = User.reflect_on_association(:attendance)
       expect(association.macro).to eq :has_many
   end
+
 end
 
   end
