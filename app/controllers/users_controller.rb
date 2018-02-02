@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
+
+  # The only difference between this function and the show function is that this returns all the users whilst the show function only
+  # returns the current logged in user
   def index
     @users = User.all
 
@@ -14,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   # POST /users
+  # Usual post request this essentially makes orm posts a user to the database
   def create
     @user = User.new(user_params)
 
