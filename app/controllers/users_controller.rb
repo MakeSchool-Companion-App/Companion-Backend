@@ -38,6 +38,8 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
+
+  # This function is deleteing the current user any thing denoted by just as users references the current user
   def destroy
     @user.destroy
   end
@@ -50,6 +52,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.permit(:email, :password)
     end
 end
