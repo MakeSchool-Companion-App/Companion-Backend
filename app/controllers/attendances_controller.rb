@@ -46,6 +46,6 @@ class AttendancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def attendance_params
-      params.fetch(:attendance, {})
+      params.permit(:title, :text_body, :date)
     end
 end
