@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :require_login, only: [:create, :destroy], raise: false
 
   # GET /users
 
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    # So we can fetch specific users by their index the token is just to grant us access to the data
     render json: @user
   end
 

@@ -16,6 +16,7 @@ class AttendancesController < ApplicationController
   # POST /attendances
   def create
     @attendance = Attendance.new(attendance_params)
+    @attendance.user_id = current_user.id
 
     if @attendance.save
       render json: @attendance, status: :created, location: @attendance
