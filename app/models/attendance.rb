@@ -4,5 +4,5 @@ class Attendance < ApplicationRecord
     belongs_to :user
     validates :event, :event_time, presence:true
     validates :beacon_id, presence: true
-    validates :user_id, presence:true, uniqueness:true
+    validates :user_id, presence:true
 end
