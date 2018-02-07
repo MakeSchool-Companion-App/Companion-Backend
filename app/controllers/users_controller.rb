@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
-  end
+    render json: @users, only: [:token, :created_at, :email, :id]
+    end
 
   # GET /users/1
   def show
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: @user, only: [:token, :created_at, :email, :id, :updated_at]
     else
       render json: @user.errors, status: :unprocessable_entity
     end
