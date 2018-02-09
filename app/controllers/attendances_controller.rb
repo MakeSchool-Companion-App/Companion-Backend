@@ -19,10 +19,10 @@ class AttendancesController < ApplicationController
   def create
     # @user = User.find_by_id(params[:id].to_i)
     @attendance = Attendance.new(attendance_params)
-    @attendance.user = current_user()
+    @attendance.user = current_user() 
 
     if @attendance.save
-      render json: @attendance, only: [:beacon_id, :event ,:event_time]
+      render json: @attendance, only: [:beacon_id, :event ,:event_time, :id]
     else
       render json: @attendance.errors, status: :unprocessable_entity
     end
