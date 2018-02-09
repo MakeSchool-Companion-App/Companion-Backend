@@ -19,7 +19,7 @@ class AttendancesController < ApplicationController
   def create
     @user = User.includes(:attendances).find_by_id(params[:id].to_i)
     @attendance = Attendance.new(attendance_params)
-    @attendance.user_id = @user.id
+    @attendance.user_id = 2
 
     if @attendance.save
       render json: @attendance, only: [:beacon_id, :event ,:event_time]
