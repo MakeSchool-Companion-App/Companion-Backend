@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
-  before_action :set_attendance, only: [:show, :create,:update, :destroy]
-  # skip_before_action :require_login, only [:create]
+  before_action :set_attendance, only: [:show,:update, :destroy]
+  skip_before_action :require_login, only: [:create]
 
   # GET /attendances
   def index
@@ -17,8 +17,9 @@ class AttendancesController < ApplicationController
 
   # POST /attendances
   def create
+    @user = User.includes(:attendances).find_by_id(params[:id].to_i)
     @attendance = Attendance.new(attendance_params)
-    @attendance.user_id = current_user.id
+    @attendance.user_id = @user.id
 
     if @attendance.save
       render json: @attendance, only: [:beacon_id, :event ,:event_time]
@@ -43,9 +44,9 @@ class AttendancesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_attendance
-    #   @attendance = Attendance.find(params[:id])
-    # end
+    def set_attendance
+      @attendance = Attendance.find(params[:id])
+    end
 
     # Only allow a trusted parameter "white list" through.
     def attendance_params
