@@ -17,9 +17,9 @@ class AttendancesController < ApplicationController
 
   # POST /attendances
   def create
-    @user = User.includes(:attendances).find_by_id(params[:id].to_i)
+    # @user = User.find_by_id(params[:id].to_i)
     @attendance = Attendance.new(attendance_params)
-    @attendance.user = @user
+    @attendance.user = current_user()
 
     if @attendance.save
       render json: @attendance, only: [:beacon_id, :event ,:event_time]
