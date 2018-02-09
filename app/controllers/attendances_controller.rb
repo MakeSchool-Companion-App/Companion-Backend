@@ -1,11 +1,13 @@
 class AttendancesController < ApplicationController
-  before_action :set_attendance, only: [:show, :update, :destroy]
+  before_action :set_attendance, only: [:show, :create,:update, :destroy]
+  skip_before_action :require_login
 
   # GET /attendances
   def index
-    @attendances = Attendance.all
+    # Have to find the user we are tracking an return all their attendances
+    @user = User.includes(:attendances).find_by_id(params[:id].to_i)
 
-    render json: @attendances
+    render json: @user.attendances
   end
 
   # GET /attendances/1
@@ -50,3 +52,4 @@ class AttendancesController < ApplicationController
       params.permit(:beacon_id, :event, :event_time)
     end
 end
+

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :attendance  
+    has_many :attendances  
     validates :password, presence: true
     validates :email, presence:true, uniqueness: true
     # Adding an attribute password
