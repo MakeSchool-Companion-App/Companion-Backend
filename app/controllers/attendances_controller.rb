@@ -20,7 +20,6 @@ class AttendancesController < ApplicationController
     # @user = User.find_by_id(params[:id].to_i)
     @attendance = Attendance.new(attendance_params)
     @attendance.user = current_user() 
-    byebug
     if @attendance.save
       render json: @attendance, only: [:beacon_id, :event ,:event_time, :id]
     else
