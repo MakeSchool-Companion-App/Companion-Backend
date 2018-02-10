@@ -7,9 +7,12 @@ class UsersController < ApplicationController
   # The only difference between this function and the show function is that this returns all the users whilst the show function only
   # returns the current logged in user
   def index
-    @user = User.request.headers[:token]
-
-
+    
+    # @user = User.find_by_token(params[:token])
+    user_token = request.headers[:Authorization]
+    user_token.slice!(0,12)
+    @user = User.where({"token":user_token})
+    p user_token
     render json: @user, only: [:token, :created_at, :email, :id]
     end
 
