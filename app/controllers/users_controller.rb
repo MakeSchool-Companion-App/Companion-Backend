@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # The only difference between this function and the show function is that this returns all the users whilst the show function only
   # returns the current logged in user
   def index
-    @user = User.find_by_token(:token)
+    @user = User.request.headers[:token]
 
 
     render json: @user, only: [:token, :created_at, :email, :id]
