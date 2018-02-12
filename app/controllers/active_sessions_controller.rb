@@ -1,16 +1,25 @@
 class ActiveSessionsController < ApplicationController
   before_action :set_active_session, only: [:show, :update, :destroy]
+  skip_before_action :require_login, only: [:index, :show]
+  # This file is for the pure use of logging a user in 
 
   # GET /active_sessions
   def index
-    @active_sessions = ActiveSession.all
-
-    render json: @active_sessions
+    # Questions about scope resolution
+    # This is going to be the function that logs a user in
+    # @user_instance = User.new
+    @user = User.authenticate(params[:email], params[:password])
+   
+    render json: @user, only: [:token, :created_at, :email, :id]
+  
   end
 
   # GET /active_sessions/1
   def show
-    render json: @active_session
+    @user = User.authenticate(params[:email], params[:password])
+    byebug
+    render json: @user, only: [:token, :created_at, :email, :id]
+    # render json: @active_session
   end
 
   # POST /active_sessions
@@ -41,11 +50,11 @@ class ActiveSessionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_active_session
-      @active_session = ActiveSession.find(params[:id])
+      @active_session = User.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def active_session_params
-      params.fetch(:active_session, {})
+      params.permit(:email, :password)
     end
 end

@@ -26,17 +26,6 @@ class UsersController < ApplicationController
     render json: @user, only: [:token, :created_at, :email, :id]
   end
 
-  # POST /users
-  # Usual post request this essentially makes orm posts a user to the database
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, only: [:token, :created_at, :email, :id]
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
 
   # PATCH/PUT /users/1
   def update
