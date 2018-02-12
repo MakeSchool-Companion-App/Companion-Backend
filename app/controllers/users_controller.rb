@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  skip_before_action :require_login, only: [:create, :destroy], raise: false
+  skip_before_action :require_login, only: [:create, :show], raise: false
 
   # GET /users
 
@@ -9,11 +9,15 @@ class UsersController < ApplicationController
   def index
     
     # @user = User.find_by_token(params[:token])
-    user_token = request.headers[:Authorization]
-    user_token.slice!(0,12)
-    @user = User.where({"token":user_token})
-    p user_token
-    render json: @user, only: [:token, :created_at, :email, :id]
+    # user_token = request.headers[:Authorization]
+    # user_token.slice!(0,12)
+    # @user = User.where({"token":user_token})
+    # p user_token
+    email = request.headers['email']
+    password = request.headers['password']
+    @user = User.new(email, password)
+    @user.authenticate()
+    
     end
 
   # GET /users/1
