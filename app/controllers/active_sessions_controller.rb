@@ -17,7 +17,6 @@ class ActiveSessionsController < ApplicationController
   # GET /active_sessions/1
   def show
     @user = User.authenticate(params[:email], params[:password])
-    byebug
     render json: @user, only: [:token, :created_at, :email, :id]
     # render json: @active_session
   end
