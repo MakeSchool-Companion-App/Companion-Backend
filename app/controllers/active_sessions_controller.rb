@@ -8,7 +8,7 @@ class ActiveSessionsController < ApplicationController
     # Questions about scope resolution
     # This is going to be the function that logs a user in
     # @user_instance = User.new
-    byebug
+    
     @user = User.authenticate(params[:email], params[:password])
     puts("************ #{@user}")
    
