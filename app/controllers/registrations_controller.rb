@@ -1,5 +1,5 @@
 
-class Foo 
+class MakeSchoolServer 
   include HTTParty
 end
 class RegistrationsController < ApplicationController
@@ -13,17 +13,8 @@ class RegistrationsController < ApplicationController
  
   # POST /registrations
   def create
-    # @registration = User.new(registration_params)
-
-    # if @registration.save
-    #   render json: @registration, only: [:token, :created_at, :email, :id]
-    # else
-    #   render json: @registration.errors, status: :unprocessable_entity
-    # end
-
-    # So the goal for the application is to use this route to make the request to http party
-
-    user =  Foo.post("https://www.makeschool.com/login.json", body: {'user[email]' => params[:email], 'user[password]' => params[:password]})
+    # So what we have essentially done is that when the user on the client side makes the post request to this route we make a post request to the make school server
+    user =  MakeSchoolServer.post("https://www.makeschool.com/login.json", body: {'user[email]' => params[:email], 'user[password]' => params[:password]})
     render json: user
   end
 
