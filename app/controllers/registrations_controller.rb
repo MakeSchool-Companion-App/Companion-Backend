@@ -24,7 +24,7 @@ class RegistrationsController < ApplicationController
     # So the goal for the application is to use this route to make the request to http party
 
     user =  Foo.post("https://www.makeschool.com/login.json", body: {'user[email]' => params[:email], 'user[password]' => params[:password]})
-    render user
+    render json: user
   end
 
 
