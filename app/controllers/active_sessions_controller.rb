@@ -1,3 +1,7 @@
+class Foo 
+  include HTTParty
+end
+
 class ActiveSessionsController < ApplicationController
   before_action :set_active_session, only: [:show, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
@@ -5,14 +9,11 @@ class ActiveSessionsController < ApplicationController
 
   # GET /active_sessions
   def index
-    # Questions about scope resolution
-    # This is going to be the function that logs a user in
-    # @user_instance = User.new
-    
-    @user = User.authenticate(params[:email], params[:password])
-    puts("************ #{@user}")
-   
-    render json: @user
+  
+    # @user = User.authenticate(params[:email], params[:password])   
+    # render json: @user
+      p Foo.post("https://www.makeschool.com/login.json", body: {'user[email]' => "matthewharrilal@gmail.com", 'user[password]' => "Latchman1"})
+     render plain: "Hello World"
   end
 
   # GET /active_sessions/1
