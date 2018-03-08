@@ -42,7 +42,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pg'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
-gem 'httparty', '~> 0.16.0'
+gem 'httparty', '~> 0.16.0' 
 
 group :test do
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
