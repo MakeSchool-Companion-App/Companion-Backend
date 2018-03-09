@@ -20,8 +20,9 @@ class RegistrationsController < ApplicationController
     user =  MakeSchoolServer.post("https://www.makeschool.com/login.json", body: {'user[email]' => params[:email], 'user[password]' => params[:password]})
     
     if user != nil 
+
       @newUser = User.new(email: params[:email])
-      p @newUser.generate_token()
+
       @newUser.save
     end
 
@@ -39,6 +40,6 @@ class RegistrationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def registration_params
-      params.permit(:email, :password)
+      params.permit(:email, :password, :token)
     end
 end

@@ -2,7 +2,8 @@ class User < ApplicationRecord
     has_many :attendances  
     validates :password, presence: false
     validates :email, presence:true, uniqueness: true
-    validates :token, presence:true, uniqueness: true
+    validates :token, presence:false, uniqueness: true
+    before_create :generate_token
     # Adding an attribute password
 
 
@@ -10,6 +11,8 @@ class User < ApplicationRecord
   # Generates a token for a user
   def generate_token
     token_gen = SecureRandom.hex
+    self.token = token_gen
+
     token_gen
   end
 
