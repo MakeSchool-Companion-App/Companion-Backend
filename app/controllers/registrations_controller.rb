@@ -18,9 +18,11 @@ class RegistrationsController < ApplicationController
   def create
     # So what we have essentially done is that when the user on the client side makes the post request to this route we make a post request to the make school server
     user =  MakeSchoolServer.post("https://www.makeschool.com/login.json", body: {'user[email]' => params[:email], 'user[password]' => params[:password]})
-    p user
     
-    if user != nil       
+    if user != nil  
+      hashable_user = user.as_json
+      p hashable_user['email']
+
       @newUser = User.new(email: params[:email])
       @newUser.save
       render json: @newUser
