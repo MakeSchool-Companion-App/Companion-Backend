@@ -29,8 +29,14 @@ class RegistrationsController < ApplicationController
       
 
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name)
-      @newUser.save
-      render json: @newUser
+      if @newUser.save 
+        render json: @newUser
+      
+
+    else 
+      render plain: 'User Already Exists'
+
+    end
     end
 
   end
