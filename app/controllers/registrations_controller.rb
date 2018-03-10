@@ -21,7 +21,10 @@ class RegistrationsController < ApplicationController
     
     if user != nil  
       hashable_user = user.as_json
-      p hashable_user['email']
+      user_email = hashable_user[:email]
+      user_image_url = hashable_user[:profile_image_url]
+      user_first_name = hashable_user[:first_name]
+      user_last_name = hashable_user[:last_name]
 
       @newUser = User.new(email: params[:email])
       @newUser.save
