@@ -29,14 +29,15 @@ class RegistrationsController < ApplicationController
       
 
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name)
-      if @newUser.save 
-        render json: @newUser
-      
+      user_find = User.find_by({email: params[:email]})
+      if user_find != nil 
+        render json: user_find
 
     else 
-      render plain: 'User Already Exists'
-
+      render plain: 'User does not exist'
     end
+
+    
     end
 
   end
