@@ -12,8 +12,7 @@ class ActiveSessionsController < ApplicationController
   
     # @user = User.authenticate(params[:email], params[:password])   
     # render json: @user
-      p Foo.post("https://www.makeschool.com/login.json", body: {'user[email]' => "matthewharrilal@gmail.com", 'user[password]' => "Latchman1"})
-     render plain: "Hello World"
+    
   end
 
   # GET /active_sessions/1

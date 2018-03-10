@@ -27,7 +27,6 @@ class RegistrationsController < ApplicationController
       user_first_name = hashable_user['first_name']
       user_last_name = hashable_user['last_name']
       
-
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name)
       user_find = User.find_by({email: params[:email]})
       if user_find != nil 
