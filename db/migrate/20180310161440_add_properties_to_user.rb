@@ -3,5 +3,6 @@ class AddPropertiesToUser < ActiveRecord::Migration[5.1]
     add_column :users, :image_url, :string
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
+    add_column :users, :user_id, :string
   end
 end

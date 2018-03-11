@@ -6,6 +6,7 @@ class User < ApplicationRecord
     validates :first_name, presence:true, uniqueness: true
     validates :last_name, presence: true, uniqueness: true
     validates :image_url, presence: true, uniqueness: true
+    validates :user_id, presence: true, uniqueness:true
     before_create :generate_token
     # Adding an attribute password
 
