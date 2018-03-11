@@ -21,7 +21,6 @@ class RegistrationsController < ApplicationController
     
     if user != nil  
       hashable_user = user.as_json
-
       user_image_url = hashable_user['profile_image_url']
       p user_image_url
       user_first_name = hashable_user['first_name']
