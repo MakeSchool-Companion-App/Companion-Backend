@@ -29,8 +29,13 @@ class RegistrationsController < ApplicationController
       
 
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
-      @newUser.save
+      if User.find_by({email: user_id}) != nil
+        @newUser.save
+        render json: @newUser
+
+    else 
       render json: @newUser
+    end
 
     end
 
