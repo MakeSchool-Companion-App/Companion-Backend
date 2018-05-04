@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @facebook_user = User.new(facebook_user_params)
+    @facebook_user = User.new(user_params)
 
     if @facebook_user.save
       render json: @facebook_user
