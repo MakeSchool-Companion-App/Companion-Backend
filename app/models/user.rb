@@ -9,7 +9,7 @@ class User < ApplicationRecord
     validates :user_id, presence: false, uniqueness:true
     before_create :generate_token
     # Adding an attribute password
-
+    attribute :password
 
 
   # Generates a token for a user
