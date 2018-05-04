@@ -46,6 +46,6 @@ class FacebookUsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def facebook_user_params
-      params.fetch(:facebook_user, {})
+      params.permit(:email, :full_name, :last_name, :username, :image_url)
     end
 end
