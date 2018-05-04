@@ -26,6 +26,18 @@ class UsersController < ApplicationController
     render json: @user, only: [:token, :created_at, :email, :id]
   end
 
+  # POST /users
+  def create
+    @facebook_user = User.new(facebook_user_params)
+
+    if @facebook_user.save
+      render json: @facebook_user
+    else
+      render json: @facebook_user.errors, status: :unprocessable_entity
+    end
+  end
+
+
 
   # PATCH/PUT /users/1
   def update
