@@ -13,10 +13,8 @@ class UsersController < ApplicationController
     # user_token.slice!(0,12)
     # @user = User.where({"token":user_token})
     # p user_token
-    email = request.headers['email']
-    password = request.headers['password']
-    @user = User.new(email, password)
-    @user.authenticate()
+    @user = User.find_by({'email': params[:email]})
+    render json: @user
     
     end
 
