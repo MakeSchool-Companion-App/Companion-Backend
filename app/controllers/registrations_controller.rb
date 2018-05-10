@@ -31,7 +31,7 @@ class RegistrationsController < ApplicationController
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
       user =  User.find_by({user_id: user_id})
       if user != nil
-        puts "This is the user #{user_id}"
+        puts "This is the user #{hashable_user, hashable_user['id']}"
         render json: user
 
     else
