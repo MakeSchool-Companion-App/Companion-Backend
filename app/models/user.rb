@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :attendances  
+    has_many :attendances, dependent: :destroy
     validates :password, presence: false
     validates :email, presence:true, uniqueness: true
     validates :token, presence:false, uniqueness: true
