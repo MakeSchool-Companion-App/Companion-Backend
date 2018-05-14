@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user = User.find_by({'email': params[:email]})
     # So we can fetch specific users by their index the token is just to grant us access to the data
     render json: @user, only: [:token, :created_at, :email, :id]
   end
