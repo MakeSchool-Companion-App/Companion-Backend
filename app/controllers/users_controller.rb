@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  skip_before_action :require_login, only: [:create, :show], raise: false
+  skip_before_action :require_login, only: [:index, :create, :show], raise: false
 
   # GET /users
 
