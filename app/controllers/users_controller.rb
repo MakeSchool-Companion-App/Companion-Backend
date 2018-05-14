@@ -36,6 +36,7 @@ class UsersController < ApplicationController
       render json: @facebook_user
     else
       @user = User.find_by({'email': params[:email]})
+      render json: @user
     end
   end
 
