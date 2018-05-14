@@ -13,12 +13,12 @@ class UsersController < ApplicationController
     # user_token.slice!(0,12)
     # @user = User.where({"token":user_token})
     # p user_token
-    # @user = User.find_by({'email': params[:email]})
-    # if @user.present?
-    #   render json: @user
-    # else:
-    #   @user = User.find_by({'email': params[:email]})
-    #   render json: @user
+    @user = User.find_by({'email': params[:email]})
+    if @user.present?
+      render json: @user
+    else:
+      @user = User.find_by({'email': params[:email]})
+      render json: @user
     
     end
 
