@@ -14,7 +14,10 @@ class UsersController < ApplicationController
     # @user = User.where({"token":user_token})
     # p user_token
     @user = User.find_by({'email': params[:email]})
-    render json: @user
+    if @user.present?
+      render json: @user
+    else:
+      render json: @user.errors, status: :unprocessable_entity
     
     end
 
