@@ -17,7 +17,8 @@ class UsersController < ApplicationController
     if @user.present?
       render json: @user
     else:
-      render json: @user.errors, status: :unprocessable_entity
+      @user = User.find_by({'email': params[:email]})
+      render json: @user
     
     end
 
@@ -35,8 +36,7 @@ class UsersController < ApplicationController
     if @facebook_user.save
       render json: @facebook_user
     else
-      @user = User.find_by({'email': params[:email]})
-      render json: @user
+      render json: @facebook_user.errors, status: :unprocessable_entity
     end
   end
 
