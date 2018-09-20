@@ -6,7 +6,7 @@ class AttendancesController < ApplicationController
   def index
     # Have to find the user we are tracking an return all their attendances
     @user = User.includes(:attendances).find_by_id(params[:id].to_i)
-    render json: @user.attendances 
+    render json: @user.attendances
   end
 
   # GET /attendances/1
@@ -18,7 +18,7 @@ class AttendancesController < ApplicationController
   def create
     # @user = User.find_by_id(params[:id].to_i)
     @attendance = Attendance.new(attendance_params)
-    @attendance.user = current_user() 
+    @attendance.user = current_user()
     if @attendance.save
       render json: @attendance, only: [:beacon_id, :event ,:event_time, :id]
     else
@@ -51,4 +51,3 @@ class AttendancesController < ApplicationController
       params.permit(:id, :beacon_id, :event, :event_time)
     end
 end
-

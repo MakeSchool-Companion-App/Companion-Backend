@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :attendances, dependent: :destroy
+    has_many :attendances, dependent: :destroy # This is what allows us to het current users attendances
     validates :password, presence: false
     validates :email, presence:true, uniqueness: true
     validates :token, presence:false, uniqueness: true
