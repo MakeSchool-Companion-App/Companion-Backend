@@ -36,8 +36,7 @@ class RegistrationsController < ApplicationController
 
     else
       render json: {
-          status: 404,
-          errors: @newUser.errors
+          status: 404
       }.to_json
     end
 
