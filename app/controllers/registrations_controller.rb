@@ -34,9 +34,7 @@ class RegistrationsController < ApplicationController
       render json: found_user
 
     else
-      render json: {
-          status: 404
-      }
+      render json: user
 
     end
 
