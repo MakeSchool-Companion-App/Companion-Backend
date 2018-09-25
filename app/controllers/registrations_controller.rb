@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
     user =  MakeSchoolServer.post("https://www.makeschool.com/login.json", body: {'user[email]' => params[:email], 'user[password]' => params[:password]})
     hashable_user = user.as_json
 
-    if hashable_user['error'] == nil
+    if hashable_user['error'] == nil # If no error is being returned
       user_image_url = hashable_user['profile_image_url']
       p user_image_url
       user_first_name = hashable_user['first_name']
@@ -29,6 +29,7 @@ class RegistrationsController < ApplicationController
 
 
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
+      @newUser.save
       found_user =  User.find_by({user_id: user_id})
       puts "This is the user #{user}"
       render json: found_user
