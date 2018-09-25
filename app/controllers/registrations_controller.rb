@@ -47,7 +47,8 @@ class RegistrationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
-      @registration = Registration.find(params[:id])
+      @current_user = User.find(params[:id])
+      puts 'This is the current user' %(@current_user)
     end
 
     # Only allow a trusted parameter "white list" through.
