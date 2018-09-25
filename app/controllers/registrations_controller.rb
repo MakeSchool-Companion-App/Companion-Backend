@@ -33,10 +33,10 @@ class RegistrationsController < ApplicationController
     #   found_user =  User.find_by({user_id: user_id})
     #   puts "This is the user #{user}"
     #   render json: found_user
-    puts 'User is %s' %(user.email)
+    puts 'User is %s' %(hashable_users['email'])
 
     else
-      puts 'Else statement user %s' %(hashable_user['email'])
+      puts 'Else statement user %s' %(user)
       render json: user
 
     end
