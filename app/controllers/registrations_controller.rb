@@ -5,7 +5,7 @@ end
 
 class RegistrationsController < ApplicationController
 
-  before_action :set_registration, only: [:show, :update, :destroy]
+  around_action :set_registration, only: [:show, :update, :destroy]
 
   # The reason we want to skip before action is because a user shouldnt be required to log in to sign up for an app
 
@@ -33,7 +33,6 @@ class RegistrationsController < ApplicationController
       found_user =  User.find_by({user_id: user_id})
       puts "This is the user #{user}"
       render json: found_user
-    puts 'User is %s' %(hashable_user)
 
     else
       puts 'Else statement user %s' %(user)
