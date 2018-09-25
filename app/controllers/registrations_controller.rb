@@ -34,6 +34,7 @@ class RegistrationsController < ApplicationController
       render json: found_user
 
     else
+      print('Else statement user %s' %(user))
       render json: user
 
     end

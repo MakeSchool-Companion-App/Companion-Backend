@@ -1,18 +1,18 @@
-class Foo 
+class Foo
   include HTTParty
 end
 
 class ActiveSessionsController < ApplicationController
   before_action :set_active_session, only: [:show, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
-  # This file is for the pure use of logging a user in 
+  # This file is for the pure use of logging a user in
 
   # GET /active_sessions
   def index
-  
-    # @user = User.authenticate(params[:email], params[:password])   
+
+    # @user = User.authenticate(params[:email], params[:password])
     # render json: @user
-    
+
   end
 
   # GET /active_sessions/1
@@ -50,7 +50,7 @@ class ActiveSessionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_active_session
-      @active_session = User.find(params[:id])
+      @current_user = User.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
