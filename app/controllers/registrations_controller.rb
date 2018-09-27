@@ -5,7 +5,7 @@ end
 
 class RegistrationsController < ApplicationController
 
-  around_action :set_registration, only: [:show, :update, :destroy]
+  before_action :set_registration, only: [:show, :update, :destroy] # After action the curernt user will be set
 
   # The reason we want to skip before action is because a user shouldnt be required to log in to sign up for an app
 
