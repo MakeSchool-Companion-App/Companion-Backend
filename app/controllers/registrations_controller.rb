@@ -43,7 +43,7 @@ class RegistrationsController < ApplicationController
   end
 
 
-  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @current_user = User.find(params[:id])
