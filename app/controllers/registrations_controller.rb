@@ -32,7 +32,7 @@ class RegistrationsController < ApplicationController
       @newUser.save
       found_user =  User.find_by({user_id: user_id})
       @current_user = found_user
-      puts "This is the user #{user}"
+      puts "This is the current user now #{@current_user}"
       render json: found_user
 
     else
