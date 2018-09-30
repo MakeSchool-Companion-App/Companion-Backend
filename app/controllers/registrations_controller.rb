@@ -31,7 +31,8 @@ class RegistrationsController < ApplicationController
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
       @newUser.save
       found_user =  User.find_by({user_id: user_id})
-      puts "This is the user #{user}"
+      $current_user = found_user
+      puts "This is the current user now #{@current_user}"
       render json: found_user
 
     else

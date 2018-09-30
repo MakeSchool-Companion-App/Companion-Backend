@@ -10,8 +10,8 @@ class ActiveSessionsController < ApplicationController
   # GET /active_sessions
   def index
 
-    # @user = User.authenticate(params[:email], params[:password])
-    # render json: @user
+    @user = User.authenticate(params[:email], params[:password])
+    render json: @user
 
   end
 
