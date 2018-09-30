@@ -6,8 +6,7 @@ class AttendancesController < ApplicationController
   def index
     # Have to find the user we are tracking an return all their attendances
     puts 'This is the instance variable current user %s' %(@current_user)
-    @user = User.includes(:attendances).find_by_id(params[:id].to_i)
-    render json: @user.attendances
+    render json: @current_user.attendances
   end
 
   # GET /attendances/1
