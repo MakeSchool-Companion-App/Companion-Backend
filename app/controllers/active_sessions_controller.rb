@@ -11,6 +11,7 @@ class ActiveSessionsController < ApplicationController
   def index
 
     @user = User.authenticate(params[:email], params[:password])
+    $current_user = @user # Setting the current user session
     render json: @user
 
   end
