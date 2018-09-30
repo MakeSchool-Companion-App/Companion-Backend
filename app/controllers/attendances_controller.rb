@@ -6,7 +6,7 @@ class AttendancesController < ApplicationController
   def index
     # Have to find the user we are tracking an return all their attendances
     puts 'This is the instance variable current user %s' %(@current_user)
-    render json: @current_user.attendances
+    render json: $current_user.attendances
   end
 
   # GET /attendances/1
