@@ -38,6 +38,7 @@ class RegistrationsController < ApplicationController
           render json: found_user
       else
           render json: {error: "USER WAS NOT SAVE TO THE DATABASE", status: 500}.to_json
+      end
 
     else
       render json: {error: 'USER WAS NOT FOUND IN DATABASE', status: 500}.to_json
