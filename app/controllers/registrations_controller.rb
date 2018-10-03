@@ -19,6 +19,7 @@ class RegistrationsController < ApplicationController
     # So what we have essentially done is that when the user on the client side makes the post request to this route we make a post request to the make school server
     user =  MakeSchoolServer.post("https://www.makeschool.com/login.json", body: {'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password]})
     hashable_user = user.as_json
+    puts 'JSON USER ====> %s' %(hashable_user) 
 
     if hashable_user['error'] == nil # If no error is being returned
       user_image_url = hashable_user['profile_image_url']
