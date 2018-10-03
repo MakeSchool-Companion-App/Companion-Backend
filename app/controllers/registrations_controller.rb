@@ -20,6 +20,7 @@ class RegistrationsController < ApplicationController
     user =  MakeSchoolServer.post("https://www.makeschool.com/login.json", body: {'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password]})
     hashable_user = user.as_json
 
+
     if hashable_user['error'] == nil # If no error is being returned
       user_image_url = hashable_user['profile_image_url']
       p user_image_url
@@ -29,15 +30,17 @@ class RegistrationsController < ApplicationController
 
 
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
-      @newUser.save
-      found_user =  User.find_by({user_id: user_id})
-      $current_user = found_user
-      puts "This is the current user now #{@current_user}"
-      render json: found_user
+      if @newUser.save
+          puts 'NEW USER ====> %s' %(@newUser.as_json)
+          found_user =  User.find_by({user_id: user_id})
+          $current_user = found_user
+          puts "This is the current user now #{@current_user}"
+          render json: found_user
+      else
+          return 'FATAL ERROR: User is not saving to the database'
 
     else
-      puts 'Else statement user %s' %(user)
-      render json: user
+      return 'ERROR PRESENT WHEN FETCHING USER FROM MS API'
 
     end
 
