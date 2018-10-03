@@ -33,7 +33,7 @@ class RegistrationsController < ApplicationController
 
       if @newUser.save
           puts 'NEW USER ====> %s' %(@newUser.as_json)
-          render json: found_user
+          render json: @newUser
 
       elsif found_user
           render json: found_user
