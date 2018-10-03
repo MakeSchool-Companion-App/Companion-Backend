@@ -29,13 +29,13 @@ class RegistrationsController < ApplicationController
       user_id = hashable_user['id']
 
       @newUser = User.new(email: request.headers[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
-      found_user =  User.find_by({user_id: user_id})
+      found_user = User.find_by({'email': request.headers['email']})
 
       if @newUser.save
           puts 'NEW USER ====> %s' %(@newUser.as_json)
           render json: found_user
 
-      elsif User.find_by({'email': @newUser.email})
+      elsif found_user
           render json: @found_user
 
       else
