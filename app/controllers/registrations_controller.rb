@@ -30,16 +30,17 @@ class RegistrationsController < ApplicationController
 
 
       @newUser = User.new(email: params[:email], image_url: user_image_url, first_name: user_first_name, last_name: user_last_name, user_id: user_id)
-      @newUser.save
-      puts 'NEW USER ====> %s' %(@newUser.as_json) 
-      found_user =  User.find_by({user_id: user_id})
-      $current_user = found_user
-      puts "This is the current user now #{@current_user}"
-      render json: found_user
+      if @newUser.save
+          puts 'NEW USER ====> %s' %(@newUser.as_json)
+          found_user =  User.find_by({user_id: user_id})
+          $current_user = found_user
+          puts "This is the current user now #{@current_user}"
+          render json: found_user
+      else
+          return 'FATAL ERROR: User is not saving to the database'
 
     else
-      puts 'Else statement user %s' %(user)
-      render json: user
+      return 'ERROR PRESENT WHEN FETCHING USER FROM MS API'
 
     end
 
