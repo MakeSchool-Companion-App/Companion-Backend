@@ -36,6 +36,9 @@ class RegistrationsController < ApplicationController
           $current_user = found_user
           puts "This is the current user now #{@current_user}"
           render json: found_user
+      elsif User.find({'email': @newUser.email})
+          render json: @newUser
+
       else
           render json: {error: "USER WAS NOT SAVE TO THE DATABASE", status: 500}.to_json
       end
