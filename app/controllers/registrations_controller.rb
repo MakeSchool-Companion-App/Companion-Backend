@@ -37,10 +37,10 @@ class RegistrationsController < ApplicationController
           puts "This is the current user now #{@current_user}"
           render json: found_user
       else
-          return 'FATAL ERROR: User is not saving to the database'
+          render json: {error: "USER WAS NOT SAVE TO THE DATABASE", status: 500}.to_json
 
     else
-      return 'ERROR PRESENT WHEN FETCHING USER FROM MS API'
+      render json: {error: 'USER WAS NOT FOUND IN DATABASE', status: 500}.to_json
 
     end
 
