@@ -35,7 +35,7 @@ class RegistrationsController < ApplicationController
           found_user =  User.find_by({user_id: user_id})
           render json: found_user
 
-      elsif User.find({'email': @newUser.email})
+      elsif User.find_by({'email': @newUser.email})
           render json: @newUser
 
       else
