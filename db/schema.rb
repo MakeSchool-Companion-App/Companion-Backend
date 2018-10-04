@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310161440) do
+ActiveRecord::Schema.define(version: 20181004040259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20180310161440) do
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
+  create_table "beacons", force: :cascade do |t|
+    t.string "hardware_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hardware_id"], name: "index_beacons_on_hardware_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "token"
@@ -33,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180310161440) do
     t.string "image_url"
     t.string "first_name"
     t.string "last_name"
+    t.string "user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
