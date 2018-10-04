@@ -1,24 +1,24 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show,:update, :destroy]
-  # skip_before_action :require_login, only: [:create]
 
   # GET /attendances
   def index
-    # Have to find the user we are tracking an return all their attendances
-    puts 'This is the instance variable current user %s' %(@current_user)
+      '''Renders the a collection of the current users attendances'''
     render json: current_user.attendances
   end
 
   # GET /attendances/1
   def show
+      '''Renders a single attendance object'''
     render json: @attendance
   end
 
   # POST /attendances
   def create
-    # @user = User.find_by_id(params[:id].to_i)
+    '''Create an attendance object belonging to the current user '''
+
     @attendance = Attendance.new(attendance_params)
-    @attendance.user = current_user()
+    @attendance.user = current_user
     if @attendance.save
       render json: @attendance, only: [:beacon_id, :event ,:event_time, :id]
     else
