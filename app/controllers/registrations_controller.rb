@@ -51,7 +51,7 @@ class RegistrationsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
-      @current_user = User.find(params[:id])
+    #   @current_user = User.find(params[:id])
       puts 'This is the current user' %(@current_user)
     end
 
