@@ -6,6 +6,7 @@ class CreateBeacons < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :beacons, :hardware_id, unique: true
+    add_index :beacons, :hardware_id, unique: true # Multiple beacons for same location, not the same beacon
+
   end
 end
