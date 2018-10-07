@@ -38,6 +38,7 @@ class RegistrationsController < ApplicationController
           render json: found_user
       else
           return 'FATAL ERROR: User is not saving to the database'
+      end
 
     else
       return 'ERROR PRESENT WHEN FETCHING USER FROM MS API'
