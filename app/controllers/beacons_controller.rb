@@ -46,6 +46,6 @@ class BeaconsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def beacon_params
-      params.permit(hardware_id, title)
+      params.permit(:hardware_id, :title)
     end
 end
