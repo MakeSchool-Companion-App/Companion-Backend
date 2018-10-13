@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :attendances, dependent: :destroy # This is what allows us to het current users attendances
-    has_many :beacons, through: :attendances
+    has_many :attendances, dependent: :destroy
+    has_many :beacons, through: :attendances # Setting through relationship for complex queries
 
     validates :password, presence: false
     validates :email, presence:true, uniqueness: true
@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
 
   # Generates a token for a user
-  def generate_token
+  def generate_token # Called before the create method for the user is called generates token for user 
     token_gen = SecureRandom.hex
     self.token = token_gen
 

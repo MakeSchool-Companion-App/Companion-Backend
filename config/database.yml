@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: make_companion
   pool: 5
-  username: postgres
-  password: 
+  username: matthewharrilal
+  password:
 
 test:
   adapter: postgresql
@@ -12,7 +12,7 @@ test:
   database: make_companion_test
   pool: 5
   username: postgres
-  password: 
+  password:
 
 
 # production:
@@ -21,7 +21,7 @@ test:
 #   database: make_companion_production
 #   pool: 5
 #   username: postgres
-#   password: 
+#   password:
 
 production:
   adapter: postgresql
