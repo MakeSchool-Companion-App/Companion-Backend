@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  hardware_id: MyString
-  title: MyString
+valid:
+  hardware_id: 1234567890
+  title: Golden Gate
 
-two:
-  hardware_id: MyString
-  title: MyString
+missing_hardware_id:
+  hardware_id:
+  title: Golden Gate
+
+missing_title:
+  hardware_id: 1234567890
+  title:
+
+missing_properties:
+  hardware_id:
+  title:
