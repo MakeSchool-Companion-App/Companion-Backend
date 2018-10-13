@@ -44,12 +44,12 @@ RSpec.describe Beacon, type: :model do
 
     # TODO: Pass these tests
     describe "Associations" do
-      it "has one buyer" do
+      it "has many attendances" do
         assc = Beacon.reflect_on_association(:attendance)
         expect(assc.macro).to eq :has_many
       end
 
-      it "has one buyer" do
+      it "has many users" do
         assc = Beacon.reflect_on_association(:user)
         expect(assc.macro).to eq :has_many
       end
