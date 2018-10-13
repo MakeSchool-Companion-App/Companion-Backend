@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20181013012623) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["hardware_id"], name: "beacons_hardware_id_key", unique: true
     t.index ["hardware_id"], name: "index_beacons_on_hardware_id", unique: true
   end
 
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20181013012623) do
     t.string "image_url"
     t.string "first_name"
     t.string "last_name"
+    t.string "user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

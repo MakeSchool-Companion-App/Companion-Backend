@@ -3,7 +3,7 @@ class Attendance < ApplicationRecord
     # the in time and the out time
     belongs_to :user
     belongs_to :beacon
-    validates :event, :event_time, presence:true
+    validates :event, :event_time, presence: true
     validates :beacon_id, presence: true
-    validates :user_id, presence:true
+    validates :user_id, presence: true
 end
