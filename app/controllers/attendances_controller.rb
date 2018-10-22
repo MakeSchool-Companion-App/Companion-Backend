@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
         if @attendance.save
-            render json: @attendance, only: %i[beacon_id event event_time id]
+            render json: @attendance, only: %i[beacon_id event_in event_out id]
         else
             render json: @attendance.errors, status: :unprocessable_entity
         end
