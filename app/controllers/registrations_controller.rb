@@ -11,7 +11,9 @@ class RegistrationsController < ApplicationController
         '''
         Consume MakeSchools API to authenticate students with their database
         '''
-        user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password] })
+
+        user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password] }, headers: {'Cookie' => request.headers[:Cookie]})
+
         hashable_user = user.as_json # Cast user object as a json object
 
         # If there is an error present in the object then render an error
