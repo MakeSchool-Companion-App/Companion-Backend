@@ -11,7 +11,7 @@ class AttendancesController < ApplicationController
     def show
         '''Renders a single attendance object'''
         # attendance = Attendance.find_by({id: params[:id]})
-        puts 'This is the attendance %s ' %(@attendance) 
+        puts 'This is the attendance %s ' %(@attendance)
         render json: @attendance
     end
 
@@ -21,6 +21,7 @@ class AttendancesController < ApplicationController
 
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
+        @attendance.beacon_id = attendance_params.beacon_id
         if @attendance.save
             render json: @attendance, only: %i[beacon_id event_in event_out id]
         else
