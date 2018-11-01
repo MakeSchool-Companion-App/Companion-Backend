@@ -35,11 +35,11 @@ class RegistrationsController < ApplicationController
                 render json: found_user
 
             else # If neither user was not authenticated
-                render json: { error: 'USER WAS NOT SAVE TO THE DATABASE', status: 500 }.to_json
+                render json: { error: 'USER WAS NOT SAVE TO THE DATABASE', status: 500 }.to_json, :status => 404
             end
 
         else
-            render json: { error: 'STUDENT DOES NOT EXIST', status: 500 }.to_json
+            render json: { error: 'STUDENT DOES NOT EXIST'}.to_json
 
         end
       end
