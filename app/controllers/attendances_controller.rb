@@ -10,8 +10,8 @@ class AttendancesController < ApplicationController
     # GET /attendances/1
     def show
         '''Renders a single attendance object'''
-        attendance = Attendance.find_by({id: params[:id]})
-        render json: attendance
+        # attendance = Attendance.find_by({id: params[:id]})
+        render json: @attendance
     end
 
     # POST /attendances
