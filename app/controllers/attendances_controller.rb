@@ -22,7 +22,7 @@ class AttendancesController < ApplicationController
         puts 'These are the attendance params  %s' %(attendance_params)
         beacon = Beacon.find_by({title: attendance_params[:beacon_id]})
         puts 'This is the beacon %s' %(beacon)
-        attendance_params.beacon_id = beacon.id
+        attendance_params[:beacon_id] = beacon.id
 
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
