@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
     before_action :set_attendance, only: %i[show update destroy]
+    before_action :process_id, only: %i[create]
 
     # GET /attendances
     def index
@@ -18,9 +19,6 @@ class AttendancesController < ApplicationController
     # POST /attendances
     def create
         '''Create an attendance object belonging to the current user '''
-        beacon = Beacon.find_by({title: attendance_params[:beacon_id]})
-        params[:beacon_id] = beacon.id
-        puts 'New attendance params %s' %(attendance_params[:beacon_id])
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
 
@@ -50,7 +48,7 @@ class AttendancesController < ApplicationController
     def process_id
         # Converts string beacon title to id of beacon
         beacon = Beacon.find_by({title: attendance_params[:beacon_id]})
-        attendance_params[:beacon_id] = beacon.id
+        params[:beacon_id] = beacon.id
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_attendance
