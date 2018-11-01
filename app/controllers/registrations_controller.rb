@@ -39,7 +39,7 @@ class RegistrationsController < ApplicationController
             end
 
         else
-            render json: { error: 'STUDENT DOES NOT EXIST'}.to_json
+            render json: { error: 'STUDENT DOES NOT EXIST'}.to_json, :status => 404
 
         end
       end
