@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20181004041340) do
 
   create_table "attendances", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "event", null: false
-    t.time "event_time", null: false
+    t.string "event_in", null: false
+    t.string "event_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "beacon_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20181004041340) do
     t.string "image_url"
     t.string "first_name"
     t.string "last_name"
+    t.string "user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
