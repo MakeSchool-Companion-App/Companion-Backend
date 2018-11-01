@@ -1,6 +1,5 @@
 class AttendancesController < ApplicationController
     before_action :set_attendance, only: %i[show update destroy]
-    before_action :process_id, only: %i[create]
 
     # GET /attendances
     def index
@@ -21,7 +20,7 @@ class AttendancesController < ApplicationController
         '''Create an attendance object belonging to the current user '''
         beacon = Beacon.find_by({title: attendance_params[:beacon_id]})
         attendance_params[:beacon_id] = beacon.id
-        puts 'New attendance params %s' %(attendance_params)
+        puts 'New attendance params %s' %(attendance_params[:beacon_id])
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
 
