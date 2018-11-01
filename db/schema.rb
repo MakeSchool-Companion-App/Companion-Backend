@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181013012623) do
+ActiveRecord::Schema.define(version: 20181031225920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20181013012623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "beacon_id"
+    t.string "room_id"
     t.index ["beacon_id"], name: "index_attendances_on_beacon_id"
+    t.index ["room_id"], name: "index_attendances_on_room_id"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
@@ -31,8 +33,14 @@ ActiveRecord::Schema.define(version: 20181013012623) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hardware_id"], name: "beacons_hardware_id_key", unique: true
     t.index ["hardware_id"], name: "index_beacons_on_hardware_id", unique: true
+  end
+
+  create_table "rooms", id: false, force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_rooms_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +57,5 @@ ActiveRecord::Schema.define(version: 20181013012623) do
 
   add_foreign_key "attendances", "beacons"
   add_foreign_key "attendances", "users"
+  add_foreign_key "attendances", "rooms", primary_key: :title
 end

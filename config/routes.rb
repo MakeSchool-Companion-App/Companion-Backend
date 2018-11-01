@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   resources :beacons
   resources :attendances
   resources :active_sessions
