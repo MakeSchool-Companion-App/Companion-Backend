@@ -18,10 +18,13 @@ class AttendancesController < ApplicationController
     # POST /attendances
     def create
         '''Create an attendance object belonging to the current user '''
+        
+        beacon = Beacon.find_by({id: attendance_params[:beacon_ids]})
+        attendance_params.beacon_id = beacon.id
 
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
-        @attendance['beacon_id'] = attendance_params["beacon_id"]
+
         if @attendance.save
             render json: @attendance, only: %i[beacon_id event_in event_out id]
         else
