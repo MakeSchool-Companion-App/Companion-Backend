@@ -11,6 +11,7 @@ class AttendancesController < ApplicationController
     def show
         '''Renders a single attendance object'''
         # attendance = Attendance.find_by({id: params[:id]})
+        puts 'This is the attendance %s ' %(@attendance) 
         render json: @attendance
     end
 
