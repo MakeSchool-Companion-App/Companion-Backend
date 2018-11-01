@@ -20,7 +20,8 @@ class AttendancesController < ApplicationController
         '''Create an attendance object belonging to the current user '''
 
         puts 'These are the attendance params  %s' %(attendance_params)
-        beacon = Beacon.find_by({id: attendance_params[:beacon_id]})
+        beacon = Beacon.find_by({title: attendance_params[:beacon_id]})
+        puts 'This is the beacon %s' %(beacon)
         attendance_params.beacon_id = beacon.id
 
         @attendance = Attendance.new(attendance_params)
