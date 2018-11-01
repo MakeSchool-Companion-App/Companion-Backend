@@ -50,8 +50,4 @@ class RegistrationsController < ApplicationController
         puts format('This is the current user', @current_user)
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def registration_params
-        params.permit(:email, :password, :token)
-    end
 end
