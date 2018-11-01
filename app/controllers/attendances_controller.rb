@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
 
         @attendance = Attendance.new(attendance_params)
         @attendance.user = current_user
-        @attendance.beacon_id = attendance_params.beacon_id
+        @attendance['beacon_id'] = attendance_params["beacon_id"]
         if @attendance.save
             render json: @attendance, only: %i[beacon_id event_in event_out id]
         else
