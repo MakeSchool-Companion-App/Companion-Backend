@@ -11,8 +11,13 @@ class RegistrationsController < ApplicationController
         '''
         Consume MakeSchools API to authenticate students with their database
         '''
+        if request.headers[:Cookie].nil?
+            user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password] })
 
-        user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password] }, headers: {'Cookie' => request.headers[:Cookie]})
+        else
+            user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email]}, headers: {'Cookie' => request.headers[:Cookie]})
+        end
+
 
         hashable_user = user.as_json # Cast user object as a json object
 
@@ -35,11 +40,11 @@ class RegistrationsController < ApplicationController
                 render json: found_user
 
             else # If neither user was not authenticated
-                render json: { error: 'USER WAS NOT SAVE TO THE DATABASE', status: 500 }.to_json
+                render json: { error: 'USER WAS NOT SAVE TO THE DATABASE'}.to_json, :status => 404
             end
 
         else
-            render json: { error: 'STUDENT DOES NOT EXIST', status: 500 }.to_json
+            render json: { error: 'STUDENT DOES NOT EXIST'}.to_json, :status => 404
 
         end
       end
