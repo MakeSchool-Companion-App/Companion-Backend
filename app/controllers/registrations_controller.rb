@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
             user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password] })
 
         else
-            user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email], 'user[password]' => request.headers[:password] }, headers: {'Cookie' => request.headers[:Cookie]})
+            user = MakeSchoolServer.post('https://www.makeschool.com/login.json', body: { 'user[email]' => request.headers[:email]}, headers: {'Cookie' => request.headers[:Cookie]})
         end
 
 
