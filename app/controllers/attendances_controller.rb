@@ -23,9 +23,9 @@ class AttendancesController < ApplicationController
         @attendance.user = current_user
 
         if @attendance.save
-            casted_beacon_id = @attendance.beacon_id.to_s
+            casted_beacon_id = {beacon_id: @attendance.beacon_id.to_s, id: @attendance.id, created_at: @attendance.created_at, updated_at: @attendance.updated_at]}
             puts 'This is the casted beacon id %s' %(casted_beacon_id)
-            render json: [casted_beacon_id, @attendance.id, @attendance.event_in, @attendance.event_out]
+            render json: casted_beacon_id
         else
             render json: @attendance.errors, status: :unprocessable_entity
         end
