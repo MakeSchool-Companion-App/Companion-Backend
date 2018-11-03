@@ -24,6 +24,7 @@ class AttendancesController < ApplicationController
 
         if @attendance.save
             casted_beacon_id = @attendance.beacon_id.to_s
+            puts 'This is the casted beacon id %s' %(casted_beacon_id)
             render json: @attendance, only: %i[casted_beacon_id event_in event_out id]
         else
             render json: @attendance.errors, status: :unprocessable_entity
