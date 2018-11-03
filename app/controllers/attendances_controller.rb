@@ -59,6 +59,6 @@ class AttendancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def attendance_params
-        params.permit(:id, :beacon_id, :event_in, :event_out)
+        params.permit(:id, :beacon_id, :event_in, :event_out, :event)
     end
 end
