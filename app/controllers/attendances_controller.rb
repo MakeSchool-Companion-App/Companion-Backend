@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
     before_action :set_attendance, only: %i[show update destroy]
-    before_action :process_id, only: %i[create]
+    before_action :process_id, only: %i[create update]
 
     # GET /attendances
     def index
