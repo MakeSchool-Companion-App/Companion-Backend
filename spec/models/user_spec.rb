@@ -52,13 +52,13 @@ RSpec.describe User, type: :model do
 
   describe "Associations" do
     it "users should have many attendances" do
-      association = User.reflect_on_association(:attendance)
+      association = User.reflect_on_association(:attendances)
 
       expect(association.macro).to eq :has_many
     end
 
     it "users should have many beacons through attendances" do
-      association = User.reflect_on_association(:beacon)
+      association = User.reflect_on_association(:beacons)
 
       expect(association.macro).to eq :has_many
     end

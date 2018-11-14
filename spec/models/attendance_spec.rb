@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Attendance, type: :model do
-  let(:user) { User.new(id: 1, email: "matthewharrilal@gmail.com", password: "matthewharrilal", created_at: nil, updated_at: nil) }
+  let(:user) { User.create(email: "matthewharrilal@gmail.com", password: "matthewharrilal", created_at: nil, updated_at: nil) }
 
-  let(:beacon) { Beacon.new(hardware_id: "1245_dfwfe", title: "Hallway") }
+  let(:beacon) { Beacon.create(hardware_id: "1245_dfwfe", title: "Hallway") }
 
   subject {
     Attendance.new(event_in: "12pm", event_out: "4pm", beacon: beacon, user: user)
@@ -26,14 +26,14 @@ RSpec.describe Attendance, type: :model do
       expect(subject).to be_valid
     end
 
-    it "is valid without beacon" do
-      subject.beacon_id = nil
+    it "is invalid without beacon" do
+      subject.beacon = nil
 
       expect(subject).to_not be_valid
     end
 
-    it "is valid without user" do
-      subject.user_id = nil
+    it "is invalid without user" do
+      subject.user = nil
 
       expect(subject).to_not be_valid
     end
