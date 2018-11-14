@@ -6,7 +6,7 @@ RSpec.describe Attendance, type: :model do
   let(:beacon) { Beacon.create(hardware_id: "1245_dfwfe", title: "Hallway") }
 
   subject {
-    Attendance.new(event_in: "12pm", event_out: "4pm", beacon: beacon, user: user)
+    Attendance.new(event_in: "12pm", event_out: "4pm", event: "Welcome", beacon: beacon, user: user)
   }
 
   describe "Validations" do
@@ -24,6 +24,12 @@ RSpec.describe Attendance, type: :model do
       subject.event_out = nil
 
       expect(subject).to be_valid
+    end
+
+    it "is invalid without event" do
+      subject.event = nil
+
+      expect(subject).to_not be_valid
     end
 
     it "is invalid without beacon" do
