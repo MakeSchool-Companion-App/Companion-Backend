@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
     before_action :set_attendance, only: %i[show update destroy]
-    before_action :process_id, only: %i[create]
+    before_action :process_id, only: %i[create update]
 
     # GET /attendances
     def index
@@ -23,7 +23,9 @@ class AttendancesController < ApplicationController
         @attendance.user = current_user
 
         if @attendance.save
-            render json: @attendance, only: %i[beacon_id event_in event_out id]
+            casted_beacon_id = {beacon_id: @attendance.beacon_id.to_s, id: @attendance.id, created_at: @attendance.created_at, updated_at: @attendance.updated_at, event: @attendance.event}
+            puts 'This is the casted beacon id %s' %(casted_beacon_id)
+            render json: casted_beacon_id
         else
             render json: @attendance.errors, status: :unprocessable_entity
         end
@@ -57,6 +59,6 @@ class AttendancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def attendance_params
-        params.permit(:id, :beacon_id, :event_in, :event_out)
+        params.permit(:id, :beacon_id, :event_in, :event_out, :event)
     end
 end
