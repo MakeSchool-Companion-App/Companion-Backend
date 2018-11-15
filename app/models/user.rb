@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
     validates :password, presence: false
     validates :email, presence: true, uniqueness: true
-    validates :token, presence: true, uniqueness: true
+    validates :token, presence: true, uniqueness: true, on: :update
     validates :first_name, presence: true, uniqueness: true
     validates :last_name, presence: true, uniqueness: true
     validates :image_url, presence: true, uniqueness: false

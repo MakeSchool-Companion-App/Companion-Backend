@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
     User.new(
       email: "peterpan@gmail.com",
       password: "neverland",
-      token: "thisIsAValidToken",
       image_url: "https://www.google.com",
       first_name: "Erick",
       last_name: "Sanchez",
@@ -25,10 +24,18 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it "is invalid without a token" do
+    it "requires a token after saving" do
+      subject.save()
+
+      expect(subject.token).to_not be_nil
+    end
+
+    it "will throw an error if no token is present when updating" do
+      subject.save()
+
       subject.token = nil
 
-      expect(subject).to_not be_valid
+      expect { subject.save!() }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "is invalid without a first_name" do
