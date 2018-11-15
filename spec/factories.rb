@@ -1,6 +1,6 @@
 # This will guess the User class
 FactoryBot.define do
-	factory :authenticated_user, class: User do
+	factory :user, class: User do
 		email { "peterpan@gmail.com" }
 		password { "neverland" }
 		image_url { "https://www.google.com" }
@@ -15,5 +15,22 @@ FactoryBot.define do
 	end
 
 	factory :beacon_invalid, class: Beacon do
+	end
+
+	factory :attendance do
+		event_in { "12pm"  }
+		event_out { "4pm"  }
+		event { "Welcome"  }
+		association :beacon, factory: :beacon
+		association :user, factory: :user
+	end
+
+	factory :attendance_without_associations, class: Attendance do
+		event_in { "12pm"  }
+		event_out { "4pm"  }
+		event { "Welcome"  }
+	end
+
+	factory :attendance_invalid, class: Attendance do
 	end
 end

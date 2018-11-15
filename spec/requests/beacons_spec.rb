@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Beacons", type: :request do
   let(:endpoint) { "/beacons" }
-  let(:authenticated_user) { create(:authenticated_user) }
+  let(:authenticated_user) { create(:user) }
 
   context "Unauthorized" do
     describe "GET /beacons" do
