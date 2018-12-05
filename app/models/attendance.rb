@@ -6,6 +6,6 @@ class Attendance < ApplicationRecord
     validates :event_in, presence: true
     validates :event_out, presence: false
     validates :event, presence: true
-    validates :beacon_id, presence: true
-    validates :user_id, presence: true
+    validates :beacon, presence: true
+    validates :user, presence: true
 end

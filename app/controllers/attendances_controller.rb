@@ -12,7 +12,7 @@ class AttendancesController < ApplicationController
     def show
         '''Renders a single attendance object'''
         # attendance = Attendance.find_by({id: params[:id]})
-        puts 'This is the attendance %s ' %(@attendance)
+        # puts 'This is the attendance %s ' %(@attendance)
         render json: @attendance
     end
 
@@ -24,8 +24,8 @@ class AttendancesController < ApplicationController
 
         if @attendance.save
             casted_beacon_id = {beacon_id: @attendance.beacon_id.to_s, id: @attendance.id, created_at: @attendance.created_at, updated_at: @attendance.updated_at, event: @attendance.event}
-            puts 'This is the casted beacon id %s' %(casted_beacon_id)
-            render json: casted_beacon_id
+            # puts 'This is the casted beacon id %s' %(casted_beacon_id)
+            render json: casted_beacon_id, status: :created
         else
             render json: @attendance.errors, status: :unprocessable_entity
         end
@@ -50,7 +50,11 @@ class AttendancesController < ApplicationController
     def process_id
         # Converts string beacon title to id of beacon
         beacon = Beacon.find_by({title: attendance_params[:beacon_id]})
-        params[:beacon_id] = beacon.id
+
+        # in case the request sent invalid parameters and no beacon was found
+        if beacon
+            params[:beacon_id] = beacon.id
+        end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_attendance
