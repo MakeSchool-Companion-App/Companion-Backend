@@ -1,3 +1,5 @@
+
+
 class UsersController < ApplicationController
     before_action :set_user, only: %i[show update destroy]
     skip_before_action :require_login, only: %i[index create show], raise: false
@@ -11,6 +13,14 @@ class UsersController < ApplicationController
 
         render json: @user
       end
+
+    def portfolio
+      # @user.slug
+      const user_slug = 'e-sanchez-estrada'
+      user_portfolio_json = MakeSchoolServer.user_portfolio(@user)
+
+      render json: user_portfolio_json
+    end
 
     # GET /users/1
     def show

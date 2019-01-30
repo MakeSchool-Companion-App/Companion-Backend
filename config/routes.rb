@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :active_sessions
   resources :registrations
   resources :users
+  get 'portfolio', to: "users#portfolio"
   resources :users do 
     get "facebook_users"
   resources :search_users

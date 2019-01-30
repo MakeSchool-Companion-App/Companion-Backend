@@ -1,5 +1,16 @@
 class MakeSchoolServer # LIBRARY FOR CONSUMING MAKE SCHOOLS API
     include HTTParty
+
+    def user_portfolio(user)
+
+      # FIXME: after adding slugs to user objects, use `user.slug`
+      user_slug = 'e-sanchez-estrada'
+
+      response = self.get("https://www.makeschool.com/portfolios/#{user_slug}.json")
+
+      # formatting the response into the user portfolio
+      return response.as_json
+    end
 end
 
 class RegistrationsController < ApplicationController
